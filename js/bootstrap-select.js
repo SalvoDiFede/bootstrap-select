@@ -246,6 +246,8 @@
     width: false,
     container: false,
     hideDisabled: false,
+    showCaret: true,
+    showText: true,
     showSubtext: false,
     showIcon: true,
     showContent: true,
@@ -343,8 +345,8 @@
       var drop =
           '<div class="btn-group bootstrap-select' + multiple + inputGroup + '">' +
           '<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
-          '<span class="filter-option pull-left"></span>&nbsp;' +
-          '<span class="caret"></span>' +
+          '<span class="filter-option pull-left"></span>' + //NO SPACE
+          (this.options.showCaret ? '<span class="caret"></span>' : "") + //only if required
           '</button>' +
           '<div class="dropdown-menu open">' +
           header +
@@ -512,7 +514,8 @@
         } else if ($this.data('content') && that.options.showContent) {
           return $this.data('content');
         } else {
-          return icon + $this.html() + subtext;
+            var text = that.options.showText ? $this.html() : "";
+            return icon + text + subtext;
         }
       }).toArray();
 
